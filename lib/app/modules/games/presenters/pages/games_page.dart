@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:my_games_app/app/modules/games/presenters/pages/components/custom_cards_games.dart';
 import 'package:my_games_app/app/modules/games/presenters/triples/games_state.dart';
 import 'package:my_games_app/app/modules/games/presenters/triples/games_store.dart';
 
@@ -27,17 +28,31 @@ class _GamesPageState extends State<GamesPage> {
         title: const Text("Games"),
         centerTitle: true,
       ),
+      // body:  Center(
+      //   child: CustomCardsGames(
+      //     width: 302,
+      //     height: 192,
+      //   ),
+      // ),
       body: ScopedBuilder<GamesStore, Exception, GamesSuccess>(
         onError: (_, Exception? e) => Text("$e"),
         onLoading: (_) => const Center(child: CircularProgressIndicator()),
-        onState: (_, GamesSuccess state){
+        onState: (_, GamesSuccess state) {
           return ListView.builder(
-            itemCount: state.games.length,
-            itemBuilder: (constex, index){  
-              return ListTile(
-                title: Text(state.games[index].title),
-              );
-          });
+              scrollDirection: Axis.horizontal,
+              itemCount: state.games.length,
+              itemBuilder: (context, index) {
+                return SizedBox(
+                  width: 302,
+                  height: 192,
+                  child: CustomCardsGames(
+                    games: state.games[index],
+                  ),
+                );
+                // return ListTile(
+                //   title: Text(state.games[index].title),
+                // );
+              });
         },
       ),
     );

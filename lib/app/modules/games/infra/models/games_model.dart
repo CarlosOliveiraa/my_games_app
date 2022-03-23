@@ -13,6 +13,8 @@ class GamesModel implements GamesEntity {
   final String gnre;
   @override
   final String platform;
+  @override
+  final String releaseDate;
 
   GamesModel({
     required this.id,
@@ -20,6 +22,7 @@ class GamesModel implements GamesEntity {
     required this.thumbnail,
     required this.gnre,
     required this.platform,
+    required this.releaseDate,
   });
 
   Map<String, dynamic> toMap() {
@@ -39,6 +42,7 @@ class GamesModel implements GamesEntity {
       thumbnail: map['thumbnail'] ?? '',
       gnre: map['gnre'] ?? '',
       platform: map['platform'] ?? '',
+      releaseDate: map['release_date'] ?? '',
     );
   }
 
