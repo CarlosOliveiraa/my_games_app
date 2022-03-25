@@ -38,21 +38,21 @@ class _GamesPageState extends State<GamesPage> {
         onError: (_, Exception? e) => Text("$e"),
         onLoading: (_) => const Center(child: CircularProgressIndicator()),
         onState: (_, GamesSuccess state) {
-          return ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: state.games.length,
-              itemBuilder: (context, index) {
-                return SizedBox(
-                  width: 302,
-                  height: 192,
-                  child: CustomCardsGames(
+          return SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: 192,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: state.games.length,
+                itemBuilder: (context, index) {
+                  return CustomCardsGames(
                     games: state.games[index],
-                  ),
-                );
-                // return ListTile(
-                //   title: Text(state.games[index].title),
-                // );
-              });
+                  );
+                  // return ListTile(
+                  //   title: Text(state.games[index].title),
+                  // );
+                }),
+          );
         },
       ),
     );
